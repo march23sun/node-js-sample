@@ -12,8 +12,13 @@ app.get('/', function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
+    
+    console.log('server running!');
  
     socket.on('send', function (data) {
+        
+           console.log('data:'+data);
+            console.log('data.act:'+data.act);
  
         switch ( data.act )
         {
