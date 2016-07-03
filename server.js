@@ -4,7 +4,7 @@ var express = require("express"),
     server = http.createServer(app),
     io = require('socket.io').listen(server);
  
-server.listen(8080);
+server.listen(9000);
 console.log('server running!');
 
 app.get('/', function (req, res) {
@@ -13,12 +13,10 @@ app.get('/', function (req, res) {
 
 io.sockets.on('connection', function (socket) {
     
-    console.log('server running!');
+    console.log('socket.con:'+socket);
  
     socket.on('send', function (data) {
         
-           console.log('data:'+data);
-            console.log('data.act:'+data.act);
  
         switch ( data.act )
         {
@@ -31,6 +29,11 @@ io.sockets.on('connection', function (socket) {
             io.sockets.emit('get_response', data);
             console.log("Sending changeBg");
             break;
+            
+            default :
+            console.log("[default]act:"+data.act);
+            break;
+            
         }
  
     });
