@@ -14,6 +14,10 @@ app.get('/', function (req, res) {
 io.sockets.on('connection', function (socket) {
     
     console.log('socket.con:'+socket);
+    
+  socket.on('join', function (data) {
+    socket.join(data.key); 
+  });
  
     socket.on('send', function (data) {
         
